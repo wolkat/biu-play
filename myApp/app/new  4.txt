@@ -1,0 +1,35 @@
+jQuery(document).ready(function() {
+	
+	$('#send').click(function () {
+		var aVal = jQuery('#a').val(),
+			bVal = jQuery('#b').val(),
+			cVal = jQuery('#c').val();
+
+		var req = {
+			a: 2.0,
+			b: 4.0,
+			c: 1.0
+		};
+		console.log(req);
+
+		jQuery.ajax({
+			headers: {
+		        "Content-Type": "application/json"			    },
+			  url: 'http://localhost:9000/hi',
+			  type: 'POST',
+			  dataType: 'json',
+			  crossDomain: true,
+			  data: JSON.stringify(req),
+			  complete: function(xhr, textStatus) {
+			    alert('request sent: ' + aVal + ' ' + bVal + ' ' + cVal + ' ' + textStatus );    
+			  },
+			  success: function(data, textStatus, xhr) {
+			    alert('success! ' + data);
+			  },
+			  error: function(xhr, textStatus, errorThrown) {
+			    alert('error: ' + errorThrown );
+			  }
+		});
+		
+	})
+});
